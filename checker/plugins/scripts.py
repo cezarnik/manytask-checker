@@ -53,13 +53,13 @@ class RunScriptPlugin(PluginABC):
 
             if isinstance(e, subprocess.TimeoutExpired):
                 raise PluginExecutionFailed(
-                    f"Script timed out after {e.timeout}s ({args.timeout}s limit)",
-                    output=output,
+                    f"""Script timed out after {e.timeout}s ({args.timeout}s limit):
+                    Output: {output}""",
                 ) from e
             else:
                 raise PluginExecutionFailed(
-                    f"Script failed with exit code {e.returncode}",
-                    output=output,
+                    f"""Script failed with exit code {e.returncode}: {}
+                    Output: {output}""",
                 ) from e
         finally:
             if stdin is not None:
