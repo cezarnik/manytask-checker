@@ -48,6 +48,6 @@ class PluginExecutionFailed(TestingError):
     percentage: float = 0.0
     def __init__(self, output: str | None = None, percentage: float = 0.0) -> None:
         super().__init__()
-
+        traceback.print_stack(file=sys.stderr)
         self.output = output
         self.percentage = percentage
