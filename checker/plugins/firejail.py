@@ -56,7 +56,7 @@ class SafeRunScriptPlugin(PluginABC):
                 return output
             else:
                 # error
-                raise PluginExecutionFailed(f"Firejail is not installed; {result.stderr.decode("utf-8")}")
+                raise PluginExecutionFailed(f"Firejail is not installed; {result.stderr.decode('utf-8')}")
 
         # Construct firejail command
         command: list[str] = ["firejail", "--quiet", "--noprofile", "--deterministic-exit-code"]
