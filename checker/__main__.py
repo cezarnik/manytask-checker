@@ -9,6 +9,7 @@ from typing import Optional
 from zoneinfo import ZoneInfo
 
 import click
+import traceback
 
 from .configs import CheckerConfig, CheckerSubConfig, ManytaskConfig
 from .course import Course, FileSystemTask
@@ -343,11 +344,11 @@ def grade(
         )
     except TestingError as e:
         print_info("TESTING FAILED", color="red")
-        print_info(e)
+        traceback.print_exception(type(e), e, e.__traceback__, file=sys.stderr)
         exit(1)
     except Exception as e:
         print_info("UNEXPECTED ERROR", color="red")
-        print_info(e)
+        traceback.print_exception(type(e), e, e.__traceback__, file=sys.stderr)
         exit(1)
     print_info("TESTING PASSED", color="green")
 

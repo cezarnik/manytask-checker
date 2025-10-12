@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+import traceback
 
 
 class CheckerException(Exception):
@@ -40,9 +41,13 @@ class TestingError(CheckerException):
     pass
 
 
-@dataclass
 class PluginExecutionFailed(TestingError):
     """Exception raised when plugin execution failed"""
 
     output: str | None = None
     percentage: float = 0.0
+    def __init__(self, output: str | None = None, percentage: float = 0.0) -> None:
+        super().__init__()
+
+        self.output = output
+        self.percentage = percentage
