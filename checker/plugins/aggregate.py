@@ -24,13 +24,11 @@ class AggregatePlugin(PluginABC):
         if len(args.scores) != len(weights):
             raise PluginExecutionFailed(
                 f"Length of scores ({len(args.scores)}) and weights ({len(weights)}) does not match",
-                output=f"Length of scores ({len(args.scores)}) and weights ({len(weights)}) does not match",
             )
 
         if len(args.scores) == 0 or len(weights) == 0:
             raise PluginExecutionFailed(
-                f"Length of scores ({len(args.scores)}) or weights ({len(weights)}) is zero",
-                output=f"Length of scores ({len(args.scores)}) or weights ({len(weights)}) is zero",
+                f"Length of scores ({len(args.scores)}) or weights ({len(weights)}) is zero"
             )
 
         weighted_scores = [score * weight for score, weight in zip(args.scores, weights)]

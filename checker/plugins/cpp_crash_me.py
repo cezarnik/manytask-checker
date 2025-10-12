@@ -24,9 +24,9 @@ class CppCrashMePlugin(PluginABC):
 
     def _run(self, args: Args, *, verbose: bool = False) -> PluginOutput:  # type: ignore[override]
         if not args.binary_name:
-            raise PluginExecutionFailed(output="Wrong binary name")
+            raise PluginExecutionFailed("Wrong binary name")
         if not args.script:
-            raise PluginExecutionFailed(output="Wrong script")
+            raise PluginExecutionFailed("Wrong script")
 
         script = args.script + [args.binary_name]
         print_info(" ".join(script))
@@ -77,4 +77,4 @@ class CppCrashMePlugin(PluginABC):
         if crashed:
             return PluginOutput(output=crash_message)
         else:
-            raise PluginExecutionFailed(output="Program has not crashed")
+            raise PluginExecutionFailed("Program has not crashed")

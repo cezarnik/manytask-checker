@@ -23,8 +23,7 @@ class CheckRegexpsPlugin(PluginABC):
         # TODO: move to Args validation
         if not Path(args.origin).exists():
             raise PluginExecutionFailed(
-                f"Origin '{args.origin}' does not exist",
-                output=f"Origin {args.origin} does not exist",
+                f"Origin '{args.origin}' does not exist"
             )
 
         for pattern in args.patterns:
@@ -37,7 +36,6 @@ class CheckRegexpsPlugin(PluginABC):
                         if re.search(regexp, file_content, re.MULTILINE):
                             raise PluginExecutionFailed(
                                 f"File '{file.name}' matches regexp '{regexp}'",
-                                output=f"File '{file}' matches regexp '{regexp}'",
                             )
         return PluginOutput(
             output="No forbidden regexps found",

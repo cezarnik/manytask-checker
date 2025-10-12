@@ -16,16 +16,16 @@ class CppFlag(PluginABC):
 
     def _run(self, args: Args, *, verbose: bool = False) -> PluginOutput:  # type: ignore[override]
         if args.flag is None:
-            raise PluginExecutionFailed(output="Wrong true flag")
+            raise PluginExecutionFailed("Wrong true flag")
 
         try:
             with open(args.task_path / "flag.txt", "r") as f:
                 lines = f.read().splitlines()
                 flag = lines[0] if lines else ""
         except FileNotFoundError:
-            raise PluginExecutionFailed(output="flag.txt not found")
+            raise PluginExecutionFailed("flag.txt not found")
 
         if flag != str(args.flag):
-            raise PluginExecutionFailed(output="Wrong flag")
+            raise PluginExecutionFailed("Wrong flag")
 
         return PluginOutput(output="Correct flag")
